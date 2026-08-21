@@ -1,0 +1,26 @@
+{
+  "summary": "Iteration 9 frontend testing (admin vs regular UX). All requested flows verified on the preview URL. Regular user sees strictly read-only content across playground summary, playground detail, curriculum, code viewer, schematic and code editor. Admin user (special onboarding name) sees inline edit inputs/textareas for module title/focus, tutorial copy (Do/See/Break/Understand), per-line code explanation, code itself via react-simple-code-editor, schematic upload/clear, curriculum lesson name/description, and section title/description. Overrides persist under localStorage 'embedded-for-kids-overrides' across reload. LiveEditor now starts EMPTY for everyone, drafts persist per module id under 'embedded-for-kids-code-drafts', Reset empties the editor. Profile popover shows 'Herendra (admin)' + admin note only for admin. All previously working features (sidebar navigation, live search, donation modal, tutorial tabs, IDF-style monitor tab, terminal tab, hardware baud/connect/flash/status) still function. No page errors observed on either flow.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Sidebar lesson list", "issues": ["Sidebar lesson names are read directly from curriculumData; when an admin renames a lesson via [data-testid=lesson-name-editable] the sidebar continues to show the original name after reload (main content shows override correctly). Not in spec; minor consistency polish only."]}
+    ]
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "useAdmin uses window.localStorage in useState initializer without SSR guard — fine for CRA, watch out if migrated to Next.js.",
+    "overrides.js has no schema/versioning; if data model changes in future, migrations may be needed to avoid stale keys.",
+    "Sidebar could optionally consume resolveField() so admin lesson name overrides propagate consistently to the sidebar view (cosmetic)."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (frontend-only request)", "frontend": "100%"},
+  "test_credentials": "REGULAR {name:'Kaya', placement:'Beginner'}; ADMIN {name:'HerendraAziizulHakiimMuhammadIsTheCreatorAndVeryHandsome', placement:'Advanced'}",
+  "seed_data_creation": "Seeded localStorage 'embedded-for-kids-profile' with both regular and admin profiles across test flows. No backend seed data.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Admin gate is name-based via useAdmin hook and 'embedded-profile-change' custom event dispatched by App.js on profile set/reset. All admin edits live in localStorage key 'embedded-for-kids-overrides' via utils/overrides.js. Code drafts live in 'embedded-for-kids-code-drafts' via LiveEditor.jsx and are EMPTY by default (module.code no longer seeds the editor). To exercise curriculum edits you must first click a real lesson from the sidebar (e.g., 'Mikrokontroler'); the initial welcome view intentionally renders a plain <p> for lesson-intro because hasSelectedLesson is false.",
+  "rca of the issue": "N/A — no bugs found."
+}

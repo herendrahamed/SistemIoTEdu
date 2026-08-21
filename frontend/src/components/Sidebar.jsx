@@ -1,6 +1,7 @@
 import { ChevronDown, ChevronRight, Compass, FlaskConical, Lightbulb, Heart, X, Zap } from "lucide-react";
 import { curriculumData } from "@/curriculumData";
 import { playgroundData } from "@/playgroundData";
+import { resolveField } from "@/utils/overrides";
 
 function BookIcon() { return <Lightbulb size={14} />; }
 
@@ -22,7 +23,7 @@ function CurriculumNav({ id, openSection, setOpenSection, activeLesson, selectLe
                 {section.level === "0" ? <Compass size={14} /> : section.level}
               </span>
               <span className="section-copy">
-                <b>{section.title}</b>
+                <b>{resolveField(section.title, `levels.${index}.title`)}</b>
                 <small>{section.tag} · {section.lessons.length} materi</small>
               </span>
               <ChevronDown size={16} className="chevron" />
@@ -37,7 +38,7 @@ function CurriculumNav({ id, openSection, setOpenSection, activeLesson, selectLe
                     data-testid={`${id}lesson-${lesson.id}`}
                   >
                     <span className="lesson-dot" />
-                    {lesson.name}
+                    {resolveField(lesson.name, `lessons.${index}.${lesson.id}.name`)}
                   </button>
                 ))}
               </div>
@@ -66,8 +67,8 @@ function PlaygroundNav({ id, activeModule, selectModule }) {
         >
           <span className="module-number">{module.number}</span>
           <span>
-            <b>{module.title}</b>
-            <small>{module.focus}</small>
+            <b>{resolveField(module.title, `modules.${module.id}.title`)}</b>
+            <small>{resolveField(module.focus, `modules.${module.id}.focus`)}</small>
           </span>
           <ChevronRight size={14} />
         </button>

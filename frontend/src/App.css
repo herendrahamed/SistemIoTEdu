@@ -116,6 +116,21 @@
 .profile-reset { margin-top: 14px; border: 1px solid var(--line); background: #fff; color: var(--muted); padding: 8px 12px; border-radius: 7px; width: 100%; cursor: pointer; font: 600 12px inherit; transition: .2s; }
 .profile-reset:hover { color: var(--orange); border-color: var(--orange-soft); }
 
+/* ADMIN */
+.profile-popover.is-admin { border-color: #fbcda8; box-shadow: 0 22px 50px #f9731633; }
+.profile-avatar.admin { background: var(--orange); color: #fff; }
+.profile-admin-note { margin-top: 12px; padding: 10px 12px; background: var(--orange-tint); border: 1px solid #fde3d1; border-radius: 8px; color: #92400e; font-size: 12px; line-height: 1.55; }
+.admin-pill { display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px; background: var(--orange); color: #fff; border-radius: 999px; font: 700 9px "JetBrains Mono", monospace; letter-spacing: .12em; }
+.admin-inline-pill { display: inline-flex; align-items: center; padding: 2px 6px; background: var(--orange); color: #fff; border-radius: 4px; font: 700 8px "JetBrains Mono", monospace; letter-spacing: .1em; margin-left: 6px; vertical-align: middle; }
+.admin-editable { display: block; width: 100%; font: inherit; color: inherit; background: #fff8f2; border: 1px dashed var(--orange-soft); border-radius: 6px; padding: 6px 8px; outline: 0; transition: border-color .18s, background .18s; }
+.admin-editable:focus { border-style: solid; border-color: var(--orange); background: #fff; box-shadow: 0 0 0 3px #fed7aa55; }
+.admin-editable-textarea { resize: vertical; line-height: 1.6; min-height: 72px; }
+.admin-editable-input { padding: 4px 8px; }
+.admin-code-textarea { background: #fdfaf7 !important; }
+.admin-line-nav { display: flex; gap: 4px; }
+.admin-line-nav button { border: 1px solid var(--line); background: #fff; color: var(--muted); padding: 4px 10px; border-radius: 6px; font: 700 10px "JetBrains Mono", monospace; letter-spacing: .1em; cursor: pointer; transition: .18s; }
+.admin-line-nav button:hover { color: var(--orange); border-color: var(--orange-soft); }
+
 /* MODAL */
 .modal-backdrop { position: fixed; inset: 0; background: #11182755; display: grid; place-items: center; z-index: 40; padding: 20px; animation: rise .25s ease both; }
 .donation-modal { position: relative; max-width: 420px; width: 100%; background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 26px 26px 22px; box-shadow: 0 30px 60px #11182733; }

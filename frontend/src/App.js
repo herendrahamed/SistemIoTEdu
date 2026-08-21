@@ -81,6 +81,7 @@ function App() {
 
   const resetProfile = () => {
     window.localStorage.removeItem("embedded-for-kids-profile");
+    window.dispatchEvent(new Event("embedded-profile-change"));
     setProfile(null);
     setProfileOpen(false);
   };
@@ -90,6 +91,7 @@ function App() {
       <Onboarding
         onComplete={(nextProfile) => {
           window.localStorage.setItem("embedded-for-kids-profile", JSON.stringify(nextProfile));
+          window.dispatchEvent(new Event("embedded-profile-change"));
           setProfile(nextProfile);
         }}
       />

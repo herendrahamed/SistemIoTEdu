@@ -55,7 +55,7 @@ const levelClass = { I: "level-i", W: "level-w", E: "level-e", D: "level-d" };
 const levelName = { I: "INFO", W: "WARN", E: "ERROR", D: "DEBUG" };
 
 export function LiveEditor({ module }) {
-  const [code, setCode] = useState(() => loadDraft(module.id) ?? module.code);
+  const [code, setCode] = useState(() => loadDraft(module.id) ?? "");
   const [copied, setCopied] = useState(false);
   const [activePage, setActivePage] = useState("editor");
   const [baud, setBaud] = useState(115200);
@@ -67,9 +67,9 @@ export function LiveEditor({ module }) {
   const { supported, connected, connect, disconnect, send, clear, lines, error } = useWebSerial();
 
   useEffect(() => {
-    setCode(loadDraft(module.id) ?? module.code);
+    setCode(loadDraft(module.id) ?? "");
     setHistory([]);
-  }, [module.id, module.code]);
+  }, [module.id]);
 
   useEffect(() => {
     if (activePage === "monitor" && monitorRef.current) {
@@ -89,7 +89,7 @@ export function LiveEditor({ module }) {
     saveDraft(module.id, next);
   }, [module.id]);
 
-  const resetCode = () => updateCode(module.code);
+  const resetCode = () => updateCode("");
 
   const copy = async () => {
     try {
@@ -188,6 +188,7 @@ export function LiveEditor({ module }) {
             padding={{ top: 14, bottom: 40, left: 12, right: 12 }}
             textareaClassName="code-editor-textarea"
             preClassName="code-editor-pre"
+            placeholder="// Tulis kode ESP-IDF kamu di sini...\n// Contoh: gpio_set_direction(GPIO_NUM_2, GPIO_MODE_OUTPUT);"
             data-testid="code-editor-textarea"
             style={{
               fontFamily: '"JetBrains Mono", monospace',
