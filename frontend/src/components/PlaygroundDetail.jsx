@@ -42,15 +42,14 @@ export function PlaygroundDetail({ module, onBack }) {
       <div className="detail-grid">
         <div className="detail-column code-column">
           <div className="column-heading">
-            <b>KODE C / ESP-IDF · EDITABLE</b>
-            <span>Ubah kode langsung lalu flash ke ESP32 nyata</span>
+            <b>KODE C / ESP-IDF · READ ONLY</b>
+            <span>Klik baris kode untuk membaca penjelasannya</span>
           </div>
           <CodeEditor module={module} />
         </div>
         <div className="detail-column runtime-column">
           <div className="column-heading">
             <b>SKEMA RANGKAIAN</b>
-            <span>Unggah gambar perkawatan komponen ke pin ESP32</span>
           </div>
           <SchematicPanel module={module} />
         </div>

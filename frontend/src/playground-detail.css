@@ -32,6 +32,9 @@
 .code-copy:hover { color: var(--orange); border-color: var(--orange-soft); }
 
 .code-editor-shell { max-height: 360px; overflow: auto; background: #fdfaf7; }
+.code-viewer-shell { background: #fdfaf7; max-height: 520px; min-height: 460px; overflow: auto; border-bottom: 1px solid var(--line); }
+.code-viewer-shell pre { margin: 0 !important; }
+.code-viewer-shell .linenumber { color: #c1c5cc !important; padding-right: 12px !important; user-select: none; font-size: 12px !important; }
 .code-editor-shell textarea,
 .code-editor-shell pre { font-family: "JetBrains Mono", monospace !important; font-size: 13px !important; line-height: 1.6 !important; }
 .code-editor-textarea { outline: 0 !important; caret-color: var(--orange); }
@@ -50,6 +53,23 @@
 .code-editor-hint { padding: 12px 14px 14px; background: #fff8f2; border-top: 1px solid #fde3d1; }
 .code-editor-hint b { display: block; font: 800 10px "JetBrains Mono", monospace; letter-spacing: .18em; color: var(--orange); }
 .code-editor-hint span { display: block; margin-top: 6px; font-size: 12px; line-height: 1.65; color: var(--muted); }
+
+.code-explain-panel { padding: 14px 16px 16px; background: #fff8f2; border-top: 1px solid #fde3d1; }
+.code-explain-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.code-explain-panel .explain-line { font: 800 10px "JetBrains Mono", monospace; letter-spacing: .16em; color: var(--orange); }
+.code-explain-head small { color: #9ca3af; font-size: 11px; }
+.code-explain-panel p { margin: 8px 0 0; color: var(--ink); font-size: 13px; line-height: 1.7; }
+.code-copy.is-active { background: var(--orange-tint); color: var(--orange); border-color: var(--orange-soft); }
+
+/* TERMINAL MODAL */
+.terminal-backdrop { position: fixed; inset: 0; background: #0f172aaa; display: grid; place-items: center; padding: 24px; z-index: 55; animation: rise .2s ease both; }
+.terminal-modal { width: min(720px, 100%); background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: 0 30px 60px #11182755; display: flex; flex-direction: column; gap: 12px; }
+.terminal-topline { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.terminal-title { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); font: 800 10px "JetBrains Mono", monospace; letter-spacing: .12em; }
+.terminal-title span { color: var(--ink); }
+.terminal-actions { display: flex; gap: 6px; }
+.terminal-modal .serial-monitor { margin: 0; min-height: 260px; max-height: 380px; }
+.terminal-modal .serial-input { margin: 0; }
 
 /* HARDWARE CONTROLS */
 .hardware-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 12px 14px; border-top: 1px solid var(--line); background: #fafafa; }
