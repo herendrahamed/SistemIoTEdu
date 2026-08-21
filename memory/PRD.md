@@ -26,6 +26,8 @@ Build a React and TailwindCSS educational web app called “Embedded for Kids”
 - Internal scrolling for long curriculum sections on desktop and mobile.
 - Toggle between official academic curriculum and ESP32 Playground.
 - Playground modules with Try, See, Change, Break, Discover, Challenge, and Build steps.
+- First-visit onboarding with local name/profile and optional placement selection.
+- Non-intrusive optional QRIS donation placeholder with close and skip paths.
 
 ## Implemented
 
@@ -44,6 +46,14 @@ Build a React and TailwindCSS educational web app called “Embedded for Kids”
 - Added the Kurikulum Akademis / ESP32 Playground mode switch.
 - Added 12 hands-on Playground modules with local simulation states for Try, See, Change, Break, Discover, Challenge, and Build.
 - Added local error/broken-state visualization and challenge strip for experiments; no hardware or external API integration is included.
+
+### 2026-02-21 — Onboarding
+- Added a first-visit Welcome/Login Screen with local learner name input and Beginner/Intermediate/Advanced placement cards.
+- Added localStorage persistence so returning learners go directly to the dashboard.
+- Added skip paths for learners who want to explore immediately.
+- Added optional QRIS placeholder donation card with close and skip controls; it does not block access.
+- Replaced the Playground challenge lightning icon with a contextual Trophy icon.
+- Verified onboarding validation, persistence, mobile layout, dashboard access, and Playground regression flows.
 
 ## Prioritized Backlog
 
