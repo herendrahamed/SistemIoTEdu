@@ -1,11 +1,11 @@
-import { ChevronRight, FlaskConical, Lightbulb, Trophy, Sparkles } from "lucide-react";
+import { ChevronRight, FlaskConical, Lightbulb } from "lucide-react";
 import { playgroundSteps, playgroundStepCopy } from "@/playgroundData";
 
 export function PlaygroundContent({ module, activeStep, setActiveStep, onOpenDetail }) {
   const isBreak = activeStep === "Break";
   const litSteps = ["Try", "Build", "Discover"];
   return (
-    <section className="content-wrap playground-content" data-testid="playground-content">
+    <section className="content-wrap playground-content compact-top" data-testid="playground-content">
       <div className="playground-kicker">
         <span className="sparkle-mark"><FlaskConical size={16} /></span>
         ESP32 PLAYGROUND <i>•</i> EXPERIMENT {module.number}
@@ -48,20 +48,6 @@ export function PlaygroundContent({ module, activeStep, setActiveStep, onOpenDet
               Buka lab interaktif <ChevronRight size={16} />
             </button>
           </div>
-        </div>
-      </div>
-      <div className="challenge-strip" data-testid="playground-challenge">
-        <span className="challenge-icon"><Trophy size={16} /></span>
-        <div>
-          <b>Challenge: {module.challenge}</b>
-          <span>Gunakan apa yang baru kamu temukan untuk membuat versimu sendiri.</span>
-        </div>
-      </div>
-      <div className="discovery-strip" data-testid="playground-discovery">
-        <span className="discovery-icon"><Sparkles size={16} /></span>
-        <div>
-          <b>Discovery: temukan pola tersembunyi</b>
-          <span>Ubah satu variabel dan catat perubahannya. Kamu peneliti kecilnya.</span>
         </div>
       </div>
     </section>

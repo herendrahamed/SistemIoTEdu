@@ -6,6 +6,7 @@ import "@/onboarding.css";
 import "@/playground-detail.css";
 import { curriculumData, initialLesson } from "@/curriculumData";
 import { playgroundData } from "@/playgroundData";
+import { Instagram } from "lucide-react";
 import { Onboarding } from "@/components/Onboarding";
 import { Sidebar } from "@/components/Sidebar";
 import { Header } from "@/components/Header";
@@ -181,7 +182,16 @@ function App() {
           />
         )}
         <footer className="page-footer" data-testid="app-footer">
-          <span>© 2024 Embedded for Kids</span>
+          <a
+            className="footer-credit"
+            href="https://instagram.com/herendrahamed"
+            target="_blank"
+            rel="noreferrer"
+            data-testid="footer-credit"
+          >
+            <Instagram size={13} />
+            <span>Build by <b>@herendrahamed</b></span>
+          </a>
           <span className="footer-code">ESP32 <i>×</i> ESP-IDF <i>×</i> curiosity</span>
         </footer>
       </main>

@@ -128,6 +128,7 @@
 
 /* CONTENT */
 .content-wrap { width: min(100% - 96px, 65ch); margin: 0 auto; padding: 88px 0 50px; flex: 1; animation: rise .55s ease both; }
+.content-wrap.compact-top { padding-top: 40px; }
 .playground-detail.content-wrap { width: min(100% - 96px, 1180px); }
 .eyebrow { color: var(--orange); display: flex; gap: 8px; align-items: center; }
 .eyebrow i { color: #d1d5db; font-style: normal; }
@@ -147,7 +148,11 @@
 .text-action { display: inline-flex; align-items: center; gap: 6px; border: 0; background: transparent; padding: 0; color: var(--orange); cursor: pointer; font: 700 13px inherit; }
 .text-action:hover { gap: 10px; }
 
-.page-footer { padding: 24px 48px; border-top: 1px solid var(--line); color: #9ca3af; font-size: 11px; display: flex; justify-content: space-between; }
+.page-footer { padding: 24px 48px; border-top: 1px solid var(--line); color: #9ca3af; font-size: 11px; display: flex; justify-content: space-between; align-items: center; }
+.footer-credit { display: inline-flex; align-items: center; gap: 7px; color: #9ca3af; text-decoration: none; transition: color .18s; font: inherit; }
+.footer-credit:hover { color: var(--orange); }
+.footer-credit b { color: var(--ink); font-weight: 700; }
+.footer-credit:hover b { color: var(--orange); }
 .footer-code { font: 10px "JetBrains Mono", monospace; }
 .footer-code i { color: var(--orange); font-style: normal; margin: 0 5px; }
 

@@ -30,14 +30,6 @@ export function ProfilePopover({ profile, onClose, onReset }) {
           <X size={14} />
         </button>
       </div>
-      <div className="profile-progress">
-        <span>
-          <small>PROGRES BELAJAR</small>
-          <b>0%</b>
-        </span>
-        <div className="progress-track"><span /></div>
-        <p>Siap memulai materi pertamamu.</p>
-      </div>
       <button className="profile-reset" onClick={onReset} data-testid="profile-reset-button">
         Mulai ulang perjalanan
       </button>
