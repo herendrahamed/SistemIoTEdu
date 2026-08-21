@@ -1,72 +1,55 @@
-# Embedded for Kids — Product Requirements
+# Embedded for Kids — PRD
 
-## Original Problem Statement
-Build a React and TailwindCSS educational web app called “Embedded for Kids” for teaching ESP32 and ESP-IDF students. Phase 1 focuses on a clean responsive layout and navigation: white content area, gray-100 sidebar, orange accents, collapsible curriculum sidebar with Beginner/Intermediate/Advanced mock categories, readable 65ch content shell, breadcrumb header, and profile icon. No backend or specific lesson pages yet. The user selected local mock data with simple accordion interaction.
-
-## Architecture Decisions
-- Frontend-only React experience for Phase 1; no API calls or backend logic added.
-- Curriculum is represented as local structured data in `src/curriculumData.js`.
-- Single responsive shell with desktop collapsible sidebar and mobile drawer.
-- Outfit is used for headings/UI, with JetBrains Mono for small technical labels.
-- Every interactive or critical user-facing element has a unique `data-testid`.
+## Problem Statement
+Aplikasi web edukasi 'Embedded for Kids' berbasis React + TailwindCSS untuk mengajarkan ESP32 dan ESP-IDF kepada siswa. Skema warna oranye-putih-abu, sidebar navigasi kurikulum + Playground, area konten utama, header dengan breadcrumb, search, dan profil user.
 
 ## User Personas
-- Curious beginner students learning their first ESP32 concepts.
-- Intermediate learners exploring ESP-IDF scheduling and RTOS concepts.
-- Educators needing a calm, scannable learning shell for future lessons.
+- Siswa pemula (SD-SMP) yang penasaran dengan mikrokontroler.
+- Siswa lanjut yang siap masuk ke FreeRTOS + Wi-Fi.
+- Guru/mentor yang ingin memandu praktik langsung tanpa perlu perangkat keras.
 
-## Core Requirements (Static)
-- Responsive collapsible curriculum sidebar.
-- Accordion categories: official Level 0 through Level 8 curriculum.
-- Breadcrumb and profile control in the header.
-- Comfortable reading width of approximately 65ch.
-- Orange accent, white main background, gray supporting surfaces.
-- Local mock curriculum and lesson selection interaction.
-- Dynamic lesson content with level, title, description, and curriculum context.
-- Internal scrolling for long curriculum sections on desktop and mobile.
-- Toggle between official academic curriculum and ESP32 Playground.
-- Playground modules with Try, See, Change, Break, Discover, Challenge, and Build steps.
-- First-visit onboarding with local name/profile and optional placement selection.
-- Non-intrusive optional QRIS donation placeholder with close and skip paths.
+## Architecture (frontend-only)
+- React 19 + CRA + TailwindCSS + Shadcn UI komponen.
+- Modularisasi: `components/*` (Sidebar, Header, Onboarding, DonationModal, ProfilePopover, CurriculumContent, PlaygroundContent, PlaygroundDetail, CodePanel, SimulationPanel, SerialPanel).
+- State user disimpan di `localStorage` (kunci `embedded-for-kids-profile`).
+- Syntax highlighting via `react-syntax-highlighter` (Prism/oneLight).
+- Web Serial via native `navigator.serial` (opsional untuk perangkat nyata).
 
-## Implemented
+## Core Requirements
+1. Onboarding: masukkan nama + pilih titik mulai (Beginner/Intermediate/Advanced) atau skip.
+2. Sidebar responsif: mode kurikulum akademis atau ESP32 Playground; bisa collapse jadi icon rail.
+3. Header: breadcrumb, live search, tombol donasi, ikon profil clickable.
+4. Kurikulum: 9 level (Discovery → Project & Mission) dengan lesson interaktif.
+5. Playground: 12 modul eksperimen (First Spark s/d Create Your Own).
+6. Playground Detail: tutorial Do/See/Break/Understand + code C/ESP-IDF dengan syntax highlighting + panel eksekusi dual-mode (Simulasi lokal atau Perangkat Nyata via Web Serial).
 
-### 2026-02-21
-- Replaced starter screen with the Embedded for Kids learning shell.
-- Added curriculum accordion, local lesson selection, progress indicator, breadcrumbs, responsive mobile navigation, and lesson preview.
-- Added responsive styling, warm orange visual language, typography, hover states, and page entrance animation.
-- Verified desktop and mobile flows, accordion behavior, sidebar collapse, no horizontal overflow, and unique test IDs.
-- Replaced the starter mock categories with all official Level 0–8 curriculum topics and generated short lesson introductions.
-- Added active lesson state: selecting any sub-material updates breadcrumb and main content, and removes the welcome hero.
-- Added internal sidebar scrolling with a viewport-bounded desktop sidebar for long levels such as FreeRTOS.
+## What's been implemented (Feb 2026)
+- Onboarding flow + localStorage profile.
+- Sidebar (expanded + icon-rail collapsed) dengan tombol donasi permanen.
+- Header dengan hamburger toggle, live search (kurikulum + playground), donasi + profil popover.
+- ProfilePopover: nama, level, progress, tombol reset perjalanan.
+- DonationModal reopenable dari header, sidebar, atau collapsed rail.
+- Kurikulum lengkap 9 level.
+- Playground summary dengan Challenge & Discovery strips (ikon center).
+- Playground Detail Page: tutorial tabs, code panel (react-syntax-highlighter + click-line explain), Dual Mode Simulasi / Perangkat Nyata.
+- SimulationPanel: LED, tombol, potensiometer, sensor cahaya, Wi-Fi, multi-task, virtual serial monitor.
+- SerialPanel: Web Serial API (Hubungkan Port, Baud selector, Kirim Perintah, Bersihkan, Serial Monitor).
+- Testing iteration 5: 17/17 flow pass, tidak ada bug kritis.
 
-### 2026-02-21 — Playground Expansion
-- Added a visible Lucide Compass icon for Level 0 Discovery.
-- Made the desktop sidebar sticky at viewport height with its own internal scroll area.
-- Added the Kurikulum Akademis / ESP32 Playground mode switch.
-- Added 12 hands-on Playground modules with local simulation states for Try, See, Change, Break, Discover, Challenge, and Build.
-- Added local error/broken-state visualization and challenge strip for experiments; no hardware or external API integration is included.
+## Backlog
+### P1
+- Sinkronisasi progres belajar dengan backend & multi-device.
+- Auto-checklist tantangan Playground.
+- Simpan draft kode user per modul.
 
-### 2026-02-21 — Onboarding
-- Added a first-visit Welcome/Login Screen with local learner name input and Beginner/Intermediate/Advanced placement cards.
-- Added localStorage persistence so returning learners go directly to the dashboard.
-- Added skip paths for learners who want to explore immediately.
-- Added optional QRIS placeholder donation card with close and skip controls; it does not block access.
-- Replaced the Playground challenge lightning icon with a contextual Trophy icon.
-- Verified onboarding validation, persistence, mobile layout, dashboard access, and Playground regression flows.
+### P2
+- Mode dark theme opsional.
+- Leaderboard mini per kelas.
+- Ekspor sertifikat setelah menyelesaikan level.
+- Voice-over bahasa Indonesia untuk tutorial.
 
-## Prioritized Backlog
-
-### P0 — Next Tasks
-- Add real lesson routes and persistent completion state.
-- Replace generated introductions with authored lesson content for the first learning path.
-- Turn Playground simulations into optional real device integrations when hardware connectivity is defined.
-
-### P1 — Product Depth
-- Add student progress persistence and completed lesson states.
-- Add a searchable curriculum command menu.
-- Add code snippets with copy and syntax highlighting.
-
-### P2 — Delight & Reach
-- Add interactive ESP32 pinout visualizer.
-- Add small quizzes and shareable learning milestones.
+## Known Mocks
+- Progres user disimpan lokal (localStorage).
+- QRIS placeholder statis (bukan pembayaran nyata).
+- Simulasi ESP32 = animasi UI lokal (bukan emulator asli).
+- Web Serial hanya bekerja di Chromium desktop dengan HTTPS.
