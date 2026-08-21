@@ -1,0 +1,47 @@
+# Embedded for Kids — Product Requirements
+
+## Original Problem Statement
+Build a React and TailwindCSS educational web app called “Embedded for Kids” for teaching ESP32 and ESP-IDF students. Phase 1 focuses on a clean responsive layout and navigation: white content area, gray-100 sidebar, orange accents, collapsible curriculum sidebar with Beginner/Intermediate/Advanced mock categories, readable 65ch content shell, breadcrumb header, and profile icon. No backend or specific lesson pages yet. The user selected local mock data with simple accordion interaction.
+
+## Architecture Decisions
+- Frontend-only React experience for Phase 1; no API calls or backend logic added.
+- Curriculum is represented as local structured data in `src/App.js`.
+- Single responsive shell with desktop collapsible sidebar and mobile drawer.
+- Outfit is used for headings/UI, with JetBrains Mono for small technical labels.
+- Every interactive or critical user-facing element has a unique `data-testid`.
+
+## User Personas
+- Curious beginner students learning their first ESP32 concepts.
+- Intermediate learners exploring ESP-IDF scheduling and RTOS concepts.
+- Educators needing a calm, scannable learning shell for future lessons.
+
+## Core Requirements (Static)
+- Responsive collapsible curriculum sidebar.
+- Accordion categories: Pengantar, ESP-IDF Scheduler, RTOS & Multithread.
+- Breadcrumb and profile control in the header.
+- Comfortable reading width of approximately 65ch.
+- Orange accent, white main background, gray supporting surfaces.
+- Local mock curriculum and lesson selection interaction.
+
+## Implemented
+
+### 2026-02-21
+- Replaced starter screen with the Embedded for Kids learning shell.
+- Added curriculum accordion, local lesson selection, progress indicator, breadcrumbs, responsive mobile navigation, and lesson preview.
+- Added responsive styling, warm orange visual language, typography, hover states, and page entrance animation.
+- Verified desktop and mobile flows, accordion behavior, sidebar collapse, no horizontal overflow, and unique test IDs.
+
+## Prioritized Backlog
+
+### P0 — Next Tasks
+- Add real lesson routes and a persistent active lesson state.
+- Add lesson content blocks for GPIO, ESP-IDF setup, and first code example.
+
+### P1 — Product Depth
+- Add student progress persistence and completed lesson states.
+- Add a searchable curriculum command menu.
+- Add code snippets with copy and syntax highlighting.
+
+### P2 — Delight & Reach
+- Add interactive ESP32 pinout visualizer.
+- Add small quizzes and shareable learning milestones.

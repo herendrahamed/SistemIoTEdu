@@ -1,0 +1,59 @@
+{
+  "app_name": "Embedded for Kids",
+  "theme": "Light mode primary with warm gray (#F3F4F6) and vibrant orange (#F97316) accents",
+  "typography": {
+    "headings": "Outfit or Plus Jakarta Sans, font-bold, tracking-tight",
+    "body": "Inter or DM Sans, text-base, leading-relaxed",
+    "code": "JetBrains Mono for ESP-IDF code snippets"
+  },
+  "colors": {
+    "background_primary": "#FFFFFF",
+    "background_sidebar": "#F3F4F6",
+    "accent_primary": "#F97316",
+    "text_dark": "#111827",
+    "text_muted": "#6B7280",
+    "border_color": "#E5E7EB"
+  },
+  "layout_specification": {
+    "sidebar": "Collapsible responsive left sidebar with accordion curriculum navigation",
+    "header": "Top header with breadcrumbs and user profile icon",
+    "content_area": "Max-width ~65ch text shell for comfortable reading"
+  },
+  "curriculum_mock_data": [
+    {
+      "category": "Pengantar (Beginner)",
+      "items": [
+        "Pengenalan ESP32 & Pinout",
+        "Setup ESP-IDF Environment",
+        "Hello World & GPIO Blink"
+      ]
+    },
+    {
+      "category": "ESP-IDF Scheduler (Intermediate)",
+      "items": [
+        "Task Creation & Priority",
+        "Queue & Inter-Task Communication",
+        "Software Timers & Event Groups"
+      ]
+    },
+    {
+      "category": "RTOS & Multithread (Advanced)",
+      "items": [
+        "Mutex, Semaphores & Race Conditions",
+        "Dual-Core Pinning (Core 0 & Core 1)",
+        "Memory Management & Heap Debugging"
+      ]
+    }
+  ],
+  "image_urls": {
+    "hero_maker": "https://images.unsplash.com/photo-1745571479662-54a2ad1c747f?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "circuit_breadboard": "https://images.pexels.com/photos/21905/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+  },
+  "component_path": "/app/frontend/src",
+  "instructions_to_main_agent": "Build the responsive layout with collapsible sidebar, accordion menu for curriculum, breadcrumb header, user profile, and max-width 65ch content area with mock lessons for ESP32 and ESP-IDF.",
+  "UNIVERSAL GUIDELINES FOR MAIN AGENT": [
+    "Use data-testid on all interactive and key elements",
+    "Do not use transparent header backgrounds",
+    "Ensure accessible contrast and clean styling"
+  ]
+}

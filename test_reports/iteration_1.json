@@ -1,0 +1,35 @@
+{
+  "summary": "Frontend-only verification completed for desktop layout, sidebar collapse, all curriculum accordions, lesson selection, mobile menu, and mobile overflow.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [
+      {
+        "flow": "Mobile curriculum navigation",
+        "issue": "The hidden desktop Sidebar remains mounted while the mobile Sidebar is open, duplicating curriculum-sidebar, accordion, lesson, brand, and progress data-testid values. Global selectors become strict-mode ambiguous and the DOM does not satisfy the requirement that critical elements have unique testids.",
+        "affected_selectors": ["[data-testid=curriculum-sidebar]", "[data-testid=curriculum-toggle-2]", "[data-testid=lesson-0-0]"]
+      }
+    ],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Render only one Sidebar instance at a time, or scope/uniquify the mobile sidebar testids; verify all data-testid values are unique while the mobile menu is open."
+  ],
+  "critical_code_review_comments": [
+    "App.js mounts desktop and mobile Sidebar components concurrently; CSS hides the desktop copy but hidden duplicate controls remain in the DOM and can confuse accessibility tooling and automation."
+  ],
+  "updated_files": ["/app/test_reports/iteration_1.json"],
+  "success_rate": {
+    "backend": "N/A (skipped per request)",
+    "frontend": "90%"
+  },
+  "seed_data_creation": "None; all curriculum data is local mock data.",
+  "retest_needed": true,
+  "should_call_test_agent_after_fix": true,
+  "context_for_next_testing_agent": "Desktop shell, collapse/restore, all three accordion open/close flows, desktop lesson selection, mobile menu open/close, and no horizontal overflow passed. Recheck duplicate testids after the mobile Sidebar rendering is corrected.",
+  "rca of the issue": "App.js always renders <Sidebar ... /> and additionally renders another <Sidebar mobile ... /> when mobileOpen is true. The first copy is hidden by the mobile CSS but remains mounted, so both copies expose identical data-testid attributes."
+}
