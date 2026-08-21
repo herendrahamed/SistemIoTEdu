@@ -1,4 +1,4 @@
-import { X, ChevronRight, Target, Zap } from "lucide-react";
+import { X, ChevronRight, Coffee, Zap } from "lucide-react";
 import { useState } from "react";
 
 const placementLevels = [
@@ -11,6 +11,7 @@ export function Onboarding({ onComplete }) {
   const [name, setName] = useState("");
   const [placement, setPlacement] = useState("");
   const [showDonation, setShowDonation] = useState(true);
+  const [qrisOpen, setQrisOpen] = useState(false);
   const finish = (skip = false) =>
     onComplete({ name: name.trim() || "Penjelajah", placement: skip ? "explorer" : placement });
 
@@ -66,19 +67,43 @@ export function Onboarding({ onComplete }) {
           <button className="donation-close" onClick={() => setShowDonation(false)} aria-label="Tutup kartu donasi" data-testid="donation-close-button">
             <X size={15} />
           </button>
-          <div className="donation-icon"><Target size={18} /></div>
+          <div className="donation-icon"><Coffee size={18} /></div>
           <div>
             <b>Dukung Pembuat Aplikasi</b>
-            <span>Opsional · bantu kami terus membuat ruang belajar ini.</span>
+            <span>Bantu kami menciptakan ruang belajar lebih baik dengan melakukan donasi di bawah ini.</span>
           </div>
-          <div className="qris-placeholder" data-testid="qris-placeholder">
+          <button
+            type="button"
+            className="qris-placeholder"
+            data-testid="qris-placeholder"
+            onClick={() => setQrisOpen(true)}
+            aria-label="Buka QRIS donasi"
+          >
             <div className="qr-grid">▦</div>
-            <small>QRIS PLACEHOLDER</small>
-          </div>
-          <button className="donation-skip" onClick={() => finish(true)} data-testid="donation-skip-button">
-            Lewati &amp; mulai belajar <ChevronRight size={14} />
+            <small>QRIS · KLIK UNTUK PERBESAR</small>
           </button>
         </aside>
+      )}
+      {qrisOpen && (
+        <div className="modal-backdrop" data-testid="onboarding-qris-modal" onClick={() => setQrisOpen(false)}>
+          <div className="qris-modal" onClick={(event) => event.stopPropagation()}>
+            <button
+              className="modal-close"
+              onClick={() => setQrisOpen(false)}
+              aria-label="Tutup QRIS"
+              data-testid="onboarding-qris-modal-close"
+            >
+              <X size={18} />
+            </button>
+            <div className="qris-modal-icon"><Coffee size={22} /></div>
+            <div className="qris-modal-big" data-testid="onboarding-qris-large">
+              <div className="qr-grid">▦</div>
+              <small>QRIS PLACEHOLDER</small>
+            </div>
+            <h2 data-testid="onboarding-qris-thankyou">thank u for supporting us</h2>
+            <p>Terima kasih sudah mendukung kami</p>
+          </div>
+        </div>
       )}
     </main>
   );
