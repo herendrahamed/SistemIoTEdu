@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { ArrowLeft, Cpu } from "lucide-react";
 import { tutorialSteps } from "@/playgroundData";
-import { CodeEditor } from "@/components/CodeEditor";
+import { CodeViewer } from "@/components/CodeViewer";
+import { LiveEditor } from "@/components/LiveEditor";
 import { SchematicPanel } from "@/components/SchematicPanel";
 
 export function PlaygroundDetail({ module, onBack }) {
@@ -40,18 +41,23 @@ export function PlaygroundDetail({ module, onBack }) {
       </div>
 
       <div className="detail-grid">
-        <div className="detail-column code-column">
-          <div className="column-heading">
-            <b>KODE C / ESP-IDF · READ ONLY</b>
-            <span>Klik baris kode untuk membaca penjelasannya</span>
-          </div>
-          <CodeEditor module={module} />
-        </div>
-        <div className="detail-column runtime-column">
+        <div className="detail-column left-column">
           <div className="column-heading">
             <b>SKEMA RANGKAIAN</b>
           </div>
           <SchematicPanel module={module} />
+          <div className="column-heading">
+            <b>KODE C / ESP-IDF · READ ONLY</b>
+            <span>Klik baris kode untuk membaca penjelasannya</span>
+          </div>
+          <CodeViewer module={module} />
+        </div>
+        <div className="detail-column right-column">
+          <div className="column-heading">
+            <b>EDITOR & TERMINAL</b>
+            <span>Tulis kode kamu sendiri, flash ke ESP32, lihat outputnya di terminal</span>
+          </div>
+          <LiveEditor module={module} />
         </div>
       </div>
     </section>

@@ -15,8 +15,11 @@
 .tutorial-body p { margin: 10px 0 0; color: var(--ink); font-size: 14.5px; line-height: 1.75; max-width: 68ch; }
 
 /* GRID */
-.detail-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 18px; }
+.detail-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; align-items: start; }
 .detail-column { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.detail-column.left-column .column-heading { margin-top: 4px; }
+.detail-column.left-column .column-heading:first-child { margin-top: 0; }
+.detail-column.right-column { position: sticky; top: 24px; }
 .column-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; padding: 0 4px; }
 .column-heading b { font: 800 10px "JetBrains Mono", monospace; letter-spacing: .18em; color: var(--muted); }
 .column-heading span { font-size: 11px; color: #9ca3af; }
@@ -70,6 +73,18 @@
 .terminal-actions { display: flex; gap: 6px; }
 .terminal-modal .serial-monitor { margin: 0; min-height: 260px; max-height: 380px; }
 .terminal-modal .serial-input { margin: 0; }
+
+/* LIVE EDITOR (RIGHT COLUMN) */
+.live-editor-wrap { display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 12px; background: #fff; overflow: hidden; box-shadow: 0 18px 32px #11182710; }
+.live-editor-tabs { display: flex; align-items: center; gap: 6px; padding: 8px 10px; background: #fafafa; border-bottom: 1px solid var(--line); }
+.live-editor-tabs button[role="tab"] { display: inline-flex; align-items: center; gap: 6px; border: 1px solid transparent; background: transparent; color: var(--muted); padding: 8px 14px; border-radius: 8px; cursor: pointer; font: 700 12px inherit; transition: .18s; position: relative; }
+.live-editor-tabs button[role="tab"]:hover { color: var(--orange); }
+.live-editor-tabs button[role="tab"].active { background: #fff; color: var(--orange); border-color: #fbcda8; box-shadow: 0 3px 10px #f9731618; }
+.live-editor-tabs .tab-badge { display: inline-flex; align-items: center; justify-content: center; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 999px; background: var(--orange); color: #fff; font: 700 10px "JetBrains Mono", monospace; }
+.live-editor-actions { margin-left: auto; display: flex; gap: 6px; }
+.live-editor-wrap .code-editor-shell.tall { max-height: 620px; min-height: 520px; }
+.live-editor-wrap .serial-monitor.tall.inline { margin: 0; min-height: 480px; max-height: 620px; border-radius: 0; }
+.live-editor-wrap .serial-input.inline { margin: 0; padding: 12px 14px; border-top: 1px solid var(--line); background: #fafafa; }
 
 /* HARDWARE CONTROLS */
 .hardware-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 12px 14px; border-top: 1px solid var(--line); background: #fafafa; }
