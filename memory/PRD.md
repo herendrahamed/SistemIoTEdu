@@ -24,6 +24,8 @@ Build a React and TailwindCSS educational web app called “Embedded for Kids”
 - Local mock curriculum and lesson selection interaction.
 - Dynamic lesson content with level, title, description, and curriculum context.
 - Internal scrolling for long curriculum sections on desktop and mobile.
+- Toggle between official academic curriculum and ESP32 Playground.
+- Playground modules with Try, See, Change, Break, Discover, Challenge, and Build steps.
 
 ## Implemented
 
@@ -36,11 +38,19 @@ Build a React and TailwindCSS educational web app called “Embedded for Kids”
 - Added active lesson state: selecting any sub-material updates breadcrumb and main content, and removes the welcome hero.
 - Added internal sidebar scrolling with a viewport-bounded desktop sidebar for long levels such as FreeRTOS.
 
+### 2026-02-21 — Playground Expansion
+- Added a visible Lucide Compass icon for Level 0 Discovery.
+- Made the desktop sidebar sticky at viewport height with its own internal scroll area.
+- Added the Kurikulum Akademis / ESP32 Playground mode switch.
+- Added 12 hands-on Playground modules with local simulation states for Try, See, Change, Break, Discover, Challenge, and Build.
+- Added local error/broken-state visualization and challenge strip for experiments; no hardware or external API integration is included.
+
 ## Prioritized Backlog
 
 ### P0 — Next Tasks
 - Add real lesson routes and persistent completion state.
 - Replace generated introductions with authored lesson content for the first learning path.
+- Turn Playground simulations into optional real device integrations when hardware connectivity is defined.
 
 ### P1 — Product Depth
 - Add student progress persistence and completed lesson states.
