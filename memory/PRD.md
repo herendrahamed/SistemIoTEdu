@@ -5,7 +5,7 @@ Build a React and TailwindCSS educational web app called “Embedded for Kids”
 
 ## Architecture Decisions
 - Frontend-only React experience for Phase 1; no API calls or backend logic added.
-- Curriculum is represented as local structured data in `src/App.js`.
+- Curriculum is represented as local structured data in `src/curriculumData.js`.
 - Single responsive shell with desktop collapsible sidebar and mobile drawer.
 - Outfit is used for headings/UI, with JetBrains Mono for small technical labels.
 - Every interactive or critical user-facing element has a unique `data-testid`.
@@ -17,11 +17,13 @@ Build a React and TailwindCSS educational web app called “Embedded for Kids”
 
 ## Core Requirements (Static)
 - Responsive collapsible curriculum sidebar.
-- Accordion categories: Pengantar, ESP-IDF Scheduler, RTOS & Multithread.
+- Accordion categories: official Level 0 through Level 8 curriculum.
 - Breadcrumb and profile control in the header.
 - Comfortable reading width of approximately 65ch.
 - Orange accent, white main background, gray supporting surfaces.
 - Local mock curriculum and lesson selection interaction.
+- Dynamic lesson content with level, title, description, and curriculum context.
+- Internal scrolling for long curriculum sections on desktop and mobile.
 
 ## Implemented
 
@@ -30,12 +32,15 @@ Build a React and TailwindCSS educational web app called “Embedded for Kids”
 - Added curriculum accordion, local lesson selection, progress indicator, breadcrumbs, responsive mobile navigation, and lesson preview.
 - Added responsive styling, warm orange visual language, typography, hover states, and page entrance animation.
 - Verified desktop and mobile flows, accordion behavior, sidebar collapse, no horizontal overflow, and unique test IDs.
+- Replaced the starter mock categories with all official Level 0–8 curriculum topics and generated short lesson introductions.
+- Added active lesson state: selecting any sub-material updates breadcrumb and main content, and removes the welcome hero.
+- Added internal sidebar scrolling with a viewport-bounded desktop sidebar for long levels such as FreeRTOS.
 
 ## Prioritized Backlog
 
 ### P0 — Next Tasks
-- Add real lesson routes and a persistent active lesson state.
-- Add lesson content blocks for GPIO, ESP-IDF setup, and first code example.
+- Add real lesson routes and persistent completion state.
+- Replace generated introductions with authored lesson content for the first learning path.
 
 ### P1 — Product Depth
 - Add student progress persistence and completed lesson states.

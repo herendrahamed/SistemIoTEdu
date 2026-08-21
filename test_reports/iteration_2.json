@@ -1,0 +1,30 @@
+{
+  "summary": "Frontend-only regression testing passed the curriculum, lesson rendering, desktop collapse, mobile drawer, overflow, and test-ID flows. A desktop internal-scroll usability issue remains for the 25-item FreeRTOS list.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {
+        "screen": "Desktop curriculum sidebar",
+        "issues": ["At 1920x1080 with Level 5 (25 lessons) expanded, curriculum navigation scrollHeight equals clientHeight (1403px), so the sidebar grows beyond the viewport rather than providing an internal scroll region. Mobile does provide an internal scroll range."]
+      }
+    ]
+  },
+  "test_report_links": ["/app/test_reports/iteration_2.json"],
+  "action_items": ["Constrain the desktop sidebar/nav to the viewport height (for example via a height/min-height chain) so long lesson lists scroll inside curriculum-navigation instead of expanding the page."],
+  "critical_code_review_comments": [".curriculum-nav has overflow-y:auto and min-height:0, but its flex parent is not explicitly constrained to the viewport; the desktop sidebar therefore expands with long lesson content and the intended scroll container is ineffective."],
+  "updated_files": ["/app/test_reports/iteration_2.json"],
+  "success_rate": {
+    "backend": "N/A (skipped per request)",
+    "frontend": "95%"
+  },
+  "seed_data_creation": "None; curriculum data is local by design.",
+  "retest_needed": true,
+  "should_call_test_agent_after_fix": true,
+  "context_for_next_testing_agent": "Verified all 9 levels and lesson counts (11, 19, 16, 19, 14, 25, 21, 19, 20), dynamic title/level/description/context, welcome hero removal, second selection, desktop collapse, mobile drawer close-on-selection, unique test IDs, and no horizontal overflow. Recheck desktop internal scrolling after CSS sizing fix.",
+  "rca of the issue": "The nav overflow rule is present, but the desktop sidebar flex column has no explicit viewport-constrained height. Its content can determine the sidebar height, making nav clientHeight equal scrollHeight for the long Level 5 list. Constrain the sidebar/app height while retaining nav min-height:0 and overflow-y:auto."
+}
