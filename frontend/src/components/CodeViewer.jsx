@@ -65,7 +65,6 @@ export function CodeViewer({ module }) {
             background: "#fdfaf7",
             fontSize: 13,
             lineHeight: 1.65,
-            minHeight: 320,
           }}
           codeTagProps={{
             style: { fontFamily: '"JetBrains Mono", monospace', fontSize: 13 },

@@ -1,0 +1,30 @@
+{
+  "summary": "Iteration 8 frontend-only test of Playground Detail right column polish. Verified read-only CodeViewer fixed height (360px), 3-tab right column (Editor/Terminal/Serial Monitor), shell-style Terminal (mac dots, title, DISCONNECTED status pill, prompt input working while disconnected), ESP-IDF style Serial Monitor topbar (baud + Ctrl+] hint + empty state), hardware controls always visible under tabs. Regression on tutorial tabs + schematic + mobile 400x800 all pass. Zero console errors. One real UI issue found: on desktop 1920x1000 the four left-group hardware controls buttons WRAP onto two lines inside the narrow right column, so the strict left-to-right ascending bounding-box order requirement fails (flash button wraps to a second row and starts at x=1126 after connect at x=1266). Everything else passes.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "LiveEditor > hardware-controls-left", "issue": "At desktop 1920x1000 the four left-group pill buttons (BAUD / Hubungkan ESP32 / Flash Kode / Bersihkan) wrap onto TWO lines because the container has flex-wrap:wrap and the right column is only ~550px wide with a 178px 'Hubungkan ESP32' button. Result: flash button appears BELOW baud/connect, breaking the required left-to-right ascending order. Positions observed: baud.left=1171, connect.left=1266, flash.left=1126 (new row), clear.left=1261. Status pill sits correctly right-aligned on its own row. Fix idea: shorten connect label (e.g. 'Hubungkan') on narrow widths, use compact button padding, or set flex-wrap:nowrap with min-width:0 and text truncation; alternatively push status to a second row on narrow widths but keep left group single-row.", "selector": "[data-testid=hardware-controls] .hardware-controls-left", "priority": "MEDIUM"}
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Playground Detail right column", "issues": ["Serial Monitor topbar renders correctly but 'idf.py monitor · baud 115200' and 'Tekan Ctrl+]' concatenate visually without a gap on very narrow viewports — cosmetic only, not blocking."]}
+    ]
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Prevent .hardware-controls-left from wrapping so BAUD → Hubungkan ESP32 → Flash Kode → Bersihkan stay on a single row inside the ~550px right column. Options: shorten 'Hubungkan ESP32' label, reduce button padding, or set flex-wrap:nowrap and let inner labels truncate."
+  ],
+  "critical_code_review_comments": [
+    "LiveEditor.jsx renders three tabs cleanly; combinedLog merges lines+history by ts which is fine but if history entries share the same ts (multiple pushed in one submit) ordering is undefined — minor.",
+    "Web Serial in headless Chromium is reporting supported=true so hardware-connect is enabled (not disabled as the review request suggested). Not a bug per se; the request phrased it 'disabled if Web Serial unsupported, otherwise enabled', which matches.",
+    "CodeViewer shell has fixed 360px height via CSS (.code-viewer-shell { height: 360px; overflow:auto }) — good. Inner SyntaxHighlighter <pre> gets height:100% so only the code scrolls."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A", "frontend": "95%"},
+  "test_credentials": "None — localStorage profile Kaya/Beginner seeded via JS.",
+  "seed_data_creation": "localStorage['embedded-for-kids-profile'] = {name:Kaya, placement:Beginner}",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Navigation flow: sidebar 'ESP32 Playground' → click first playground-module → click 'Buka lab interaktif' link to reach the detail page with CodeViewer + LiveEditor. All new iteration-8 selectors verified: code-viewer-shell (fixed 360px), viewer-reset-button, live-tab-editor/terminal/monitor, hardware-terminal, hardware-monitor, .shell-topbar/.shell-dots/.shell-title/.shell-status/.shell-body, hardware-input (enabled even when disconnected), .monitor-topbar with baud + Ctrl+] hint, .monitor-empty, hardware-controls with baud/connect/flash/clear + right-aligned status. Only outstanding issue is the left-group wrapping on desktop.",
+  "rca of the issue": "Hardware controls left group wraps because '.hardware-controls-left { flex-wrap: wrap }' + a 178px-wide orange 'Hubungkan ESP32' button + baud pill exceeds the ~550px right-column width, forcing Flash Kode + Bersihkan onto a second row. Repro: open any playground module detail at viewport ≥1200px, inspect the four buttons under the tabs — Flash renders on a new visual line. Mitigation: remove flex-wrap or narrow the connect label."
+}

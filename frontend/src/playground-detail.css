@@ -35,8 +35,8 @@
 .code-copy:hover { color: var(--orange); border-color: var(--orange-soft); }
 
 .code-editor-shell { max-height: 360px; overflow: auto; background: #fdfaf7; }
-.code-viewer-shell { background: #fdfaf7; max-height: 520px; min-height: 460px; overflow: auto; border-bottom: 1px solid var(--line); }
-.code-viewer-shell pre { margin: 0 !important; }
+.code-viewer-shell { background: #fdfaf7; height: 360px; overflow: auto; border-bottom: 1px solid var(--line); }
+.code-viewer-shell pre { margin: 0 !important; height: 100%; }
 .code-viewer-shell .linenumber { color: #c1c5cc !important; padding-right: 12px !important; user-select: none; font-size: 12px !important; }
 .code-editor-shell textarea,
 .code-editor-shell pre { font-family: "JetBrains Mono", monospace !important; font-size: 13px !important; line-height: 1.6 !important; }
@@ -86,14 +86,63 @@
 .live-editor-wrap .serial-monitor.tall.inline { margin: 0; min-height: 480px; max-height: 620px; border-radius: 0; }
 .live-editor-wrap .serial-input.inline { margin: 0; padding: 12px 14px; border-top: 1px solid var(--line); background: #fafafa; }
 
+/* SHELL TERMINAL (Terminal tab) */
+.shell-terminal { display: flex; flex-direction: column; background: #0b1220; color: #e2e8f0; min-height: 520px; max-height: 640px; font-family: "JetBrains Mono", monospace; }
+.shell-topbar { display: flex; align-items: center; gap: 10px; padding: 8px 12px; background: #111827; border-bottom: 1px solid #1f2937; }
+.shell-dots { display: inline-flex; gap: 5px; margin-right: 4px; }
+.shell-dots i { width: 10px; height: 10px; border-radius: 50%; background: #ef4444; display: inline-block; }
+.shell-dots i:nth-child(2) { background: #f59e0b; }
+.shell-dots i:nth-child(3) { background: #22c55e; }
+.shell-title { flex: 1; text-align: center; color: #94a3b8; font-size: 11px; letter-spacing: .04em; }
+.shell-status { font: 700 10px "JetBrains Mono", monospace; color: #64748b; padding: 3px 8px; border-radius: 999px; background: #1f2937; letter-spacing: .1em; }
+.shell-status.on { color: #4ade80; background: #052e16; }
+.shell-body { flex: 1; overflow-y: auto; padding: 14px 16px 6px; font-size: 12.5px; line-height: 1.6; cursor: text; }
+.shell-line { padding: 2px 0; word-break: break-word; display: flex; align-items: flex-start; gap: 6px; }
+.shell-line.out { color: #f8fafc; }
+.shell-line.in { color: #86efac; }
+.shell-line.sys { color: #7dd3fc; font-style: italic; }
+.shell-prompt-icon { color: #4ade80; flex: none; margin-top: 4px; }
+.shell-input-line { display: flex; align-items: center; gap: 6px; padding: 6px 0 12px; }
+.shell-input-line input { flex: 1; background: transparent; border: 0; outline: 0; color: #f8fafc; font: 500 12.5px "JetBrains Mono", monospace; caret-color: #4ade80; }
+.shell-input-line input::placeholder { color: #475569; }
+
+/* IDF MONITOR (Serial Monitor tab) */
+.idf-monitor { display: flex; flex-direction: column; background: #020617; color: #cbd5e1; min-height: 520px; max-height: 640px; font-family: "JetBrains Mono", monospace; }
+.monitor-topbar { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: #0f172a; border-bottom: 1px solid #1e293b; }
+.monitor-title { font: 700 11px "JetBrains Mono", monospace; color: #cbd5e1; letter-spacing: .04em; }
+.monitor-hint { font-size: 10px; color: #64748b; }
+.monitor-hint kbd { display: inline-block; margin: 0 2px; padding: 1px 5px; border: 1px solid #334155; background: #1e293b; border-radius: 3px; font: 600 9px "JetBrains Mono", monospace; color: #cbd5e1; }
+.monitor-body { flex: 1; overflow-y: auto; padding: 12px 14px; font-size: 12px; line-height: 1.65; }
+.monitor-empty { color: #475569; font-style: italic; }
+.monitor-line { display: grid; grid-template-columns: 22px auto auto 1fr auto; gap: 8px; align-items: baseline; padding: 2px 0; word-break: break-word; }
+.monitor-line .tag-level { font-weight: 700; font-size: 12px; }
+.monitor-line .tag-time { color: #64748b; font-size: 11px; }
+.monitor-line .tag-name { color: #a5b4fc; font-weight: 700; }
+.monitor-line .tag-msg { color: #e2e8f0; }
+.monitor-line .tag-badge { font: 700 9px "JetBrains Mono", monospace; padding: 2px 6px; border-radius: 4px; background: #1e293b; color: #94a3b8; letter-spacing: .06em; }
+.monitor-line.level-i .tag-level,
+.monitor-line.level-i .tag-msg { color: #4ade80; }
+.monitor-line.level-i .tag-badge { background: #052e16; color: #4ade80; }
+.monitor-line.level-w .tag-level,
+.monitor-line.level-w .tag-msg { color: #fbbf24; }
+.monitor-line.level-w .tag-badge { background: #422006; color: #fbbf24; }
+.monitor-line.level-e .tag-level,
+.monitor-line.level-e .tag-msg { color: #f87171; }
+.monitor-line.level-e .tag-badge { background: #450a0a; color: #f87171; }
+.monitor-line.level-d .tag-level,
+.monitor-line.level-d .tag-msg { color: #67e8f9; }
+.monitor-line.level-d .tag-badge { background: #083344; color: #67e8f9; }
+.monitor-line.level-plain { grid-template-columns: 1fr; color: #94a3b8; font-style: italic; }
+
 /* HARDWARE CONTROLS */
-.hardware-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 12px 14px; border-top: 1px solid var(--line); background: #fafafa; }
-.hardware-controls .serial-baud { display: inline-flex; align-items: center; gap: 6px; font: 700 10px "JetBrains Mono", monospace; letter-spacing: .1em; color: #9ca3af; }
-.hardware-controls .serial-baud select { border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; font: 600 11px inherit; color: var(--ink); background: #fff; outline: 0; cursor: pointer; }
+.hardware-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 14px 16px; border-top: 1px solid var(--line); background: linear-gradient(180deg, #fafafa, #f4f4f5); }
+.hardware-controls-left { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; flex: 1; min-width: 0; }
+.hardware-controls .serial-baud { display: inline-flex; align-items: center; gap: 6px; font: 700 10px "JetBrains Mono", monospace; letter-spacing: .1em; color: #9ca3af; padding: 6px 10px; background: #fff; border: 1px solid var(--line); border-radius: 7px; }
+.hardware-controls .serial-baud select { border: 0; padding: 2px 4px; font: 700 11px "JetBrains Mono", monospace; color: var(--ink); background: transparent; outline: 0; cursor: pointer; }
 .hardware-controls .serial-connect,
 .hardware-controls .serial-disconnect,
 .hardware-controls .serial-flash,
-.hardware-controls .serial-clear { display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px; border-radius: 7px; cursor: pointer; font: 700 12px inherit; transition: .18s; border: 1px solid var(--line); background: #fff; color: var(--muted); }
+.hardware-controls .serial-clear { display: inline-flex; align-items: center; gap: 6px; padding: 9px 14px; border-radius: 8px; cursor: pointer; font: 700 12px inherit; transition: .18s; border: 1px solid var(--line); background: #fff; color: var(--muted); white-space: nowrap; }
 .hardware-controls .serial-connect { background: var(--orange); color: #fff; border-color: var(--orange); box-shadow: 0 6px 14px #f9731628; }
 .hardware-controls .serial-connect:hover:not(:disabled) { background: #ea6a12; }
 .hardware-controls .serial-connect:disabled { opacity: .5; cursor: not-allowed; box-shadow: none; }
@@ -102,9 +151,9 @@
 .hardware-controls .serial-flash:disabled { opacity: .45; cursor: not-allowed; box-shadow: none; }
 .hardware-controls .serial-disconnect:hover,
 .hardware-controls .serial-clear:hover { color: var(--orange); border-color: var(--orange-soft); }
-.hardware-controls .serial-status { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; color: #9ca3af; font: 800 10px "JetBrains Mono", monospace; letter-spacing: .1em; }
+.hardware-controls .serial-status { display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px; background: #fff; border: 1px solid var(--line); border-radius: 999px; color: #9ca3af; font: 800 10px "JetBrains Mono", monospace; letter-spacing: .1em; }
 .hardware-controls .serial-status .dot { width: 7px; height: 7px; border-radius: 50%; background: #d1d5db; }
-.hardware-controls .serial-status.on { color: #16a34a; }
+.hardware-controls .serial-status.on { color: #16a34a; border-color: #bbf7d0; background: #f0fdf4; }
 .hardware-controls .serial-status.on .dot { background: #16a34a; box-shadow: 0 0 0 4px #dcfce7; }
 
 .code-editor-wrap .serial-warning,
